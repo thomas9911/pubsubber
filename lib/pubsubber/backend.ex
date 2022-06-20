@@ -2,6 +2,7 @@ defmodule Pubsubber.Backend do
   @moduledoc """
   Pubsub backend abstraction, this has two proccesses one for publishing and one for subscribing
   """
+  alias Pubsubber.Backend.GenServer
   alias Pubsubber.Backend.Redis
   alias Pubsubber.Backend.Nats
 
@@ -44,6 +45,7 @@ defmodule Pubsubber.Backend do
 
   defp get_backend_module(:redis), do: Redis
   defp get_backend_module(:nats), do: Nats
+  defp get_backend_module(:gen_server), do: GenServer
   defp get_backend_module(_), do: Redis
 
   defp get_config(backend) do

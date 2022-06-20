@@ -2,6 +2,7 @@ defmodule Pubsubber.Stream do
   require Logger
   require Pubsubber.Backend.Redis
   require Pubsubber.Backend.Nats
+  require Pubsubber.Backend.GenServer
 
   @spec subscribe(binary, timeout) :: Enumerable.t()
   def subscribe(topic, timeout \\ :infinity) do
@@ -55,6 +56,11 @@ defmodule Pubsubber.Stream do
       when backend == Pubsubber.Backend.Nats and
              Pubsubber.Backend.Nats.is_event(event, ref, topic) ->
         {[Pubsubber.Backend.Nats.extract_message(event)], conn}
+
+      event
+      when backend == Pubsubber.Backend.GenServer and
+             Pubsubber.Backend.GenServer.is_event(event, ref, topic) ->
+        {[Pubsubber.Backend.GenServer.extract_message(event)], conn}
 
       _ ->
         {[], conn}

@@ -1,6 +1,6 @@
 # Pubsubber
 
-PubSub wrapper around some pubsub backends (currently: Redis and Nats)
+PubSub interface around some pubsub backends (currently: Redis and Nats, Some Homemade GenServer implementation)
 
 ## Installation
 

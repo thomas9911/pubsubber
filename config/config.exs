@@ -8,4 +8,4 @@ config :pubsubber,
     nats: %{host: "127.0.0.1", port: 4222}
   ]
 
-config :pubsubber, backend: :nats
+config :pubsubber, backend: :redis
