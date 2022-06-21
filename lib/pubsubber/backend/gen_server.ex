@@ -22,7 +22,6 @@ defmodule Pubsubber.Backend.GenServer do
   @impl Pubsubber.Backend
   def subscribe(conn, send_to_pid, topic) do
     GenServer.cast(conn, {:subscribe, {send_to_pid, topic}})
-
     {:ok, []}
   end
 
